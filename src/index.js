@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import './css/index.css';
+import './css/bootstrap.min.css';
 
 ReactDOM.render(
   (

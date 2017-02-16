@@ -2,14 +2,42 @@ import React, { Component } from 'react';
 import {Link} from 'react-router';
 
 class Navigation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    // This binding is necessary to make `this` work in the callback
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+  toggleMenu(){
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
   render() {
     return (
       <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
+      <nav className="navbar navbar-default">
+  <div className="container-fluid">
+    <div className="navbar-header">
+      <button type="button" onClick={this.toggleMenu} className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span className="sr-only">Toggle navigation</span>
+        <span className="icon-bar"></span>
+        <span className="icon-bar"></span>
+        <span className="icon-bar"></span>
+      </button>
+      <a className="navbar-brand" href="#">Brand</a>
+    </div>
+    <div className={`collapse navbar-collapse ${this.state.isToggleOn ? 'in' : ''}`} id="bs-example-navbar-collapse-1">
+      <ul className="nav navbar-nav">
+        <li className="active"><Link to="/">Home <span className="sr-only">(current)</span></Link></li>
         <li><Link to="about">About</Link></li>
         <li><Link to="contact">Contact</Link></li>
       </ul>
+    </div>
+  </div>
+</nav>
       </div>
     );
   }
